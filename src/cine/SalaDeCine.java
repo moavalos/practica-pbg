@@ -87,5 +87,20 @@ public class SalaDeCine {
 		}
 		return contador;
 	}*/
+	
+	public Boolean hayEspacioParaPrueba(int cantidadPersonas) {
+		Integer lugaresEnFila = 0;
+		for (int i = 0; i < asientos.length; i++) {
+			if(i>0)
+				lugaresEnFila = 0;
+			for (int j = 0; j < asientos[i].length; j++) {
+				lugaresEnFila = asientos[i][j] == null ? ++ lugaresEnFila : lugaresEnFila;
+				if(lugaresEnFila == cantidadPersonas)
+					return true;
+			}
+		}
+		return false;
+	}
 
+	
 }
