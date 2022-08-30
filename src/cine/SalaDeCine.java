@@ -17,25 +17,14 @@ public class SalaDeCine {
 	}
 
 	// 2
-	public Boolean butacaOcupada(Integer columna, Integer fila) { // ESTA MIERDA NO ANDA
-		// esto devuelve true si la butaca esta disponible/desocupada.
-		Boolean desocupado = false;
-		for (int i = 0; i < asientos.length; i++) {
-			for (int j = 0; j < asientos[0].length; j++) {
-				if (asientos[columna][fila] == null) {
-					desocupado = true;
-				}
-			}
-		}
-		return desocupado;
-	}
-
-	public Boolean ocuparButacaPrueba(Integer columna, Integer fila) {
-		if (butacaOcupada(columna - 1, fila - 1)) {
-			asientos[columna - 1][fila - 1] = 1;
-			return true;
-		}
-		return false;
+	public Boolean butacaOcupada(Integer columna, Integer fila) { 
+		// esto nos devuelve que esta ocupada
+		return asientos[columna][fila] != null;
+		/*
+		 * Boolean desocupado = false; for (int i = 0; i < asientos.length; i++) { for
+		 * (int j = 0; j < asientos[0].length; j++) { if (asientos[columna][fila] ==
+		 * null) { desocupado = true; } } } return desocupado;
+		 */
 	}
 
 	// 3
@@ -55,15 +44,15 @@ public class SalaDeCine {
 
 	// 4
 	public Integer cantidadTotalButacasOcupadas() {
-		Integer cont = 0;
-		for (int i = 0; i < columnas; i++) {
-			for (int j = 0; j < filas; j++) {
-				if (!butacaOcupada(i, j)) {
-					cont += 1;
-				}
+		Integer bOcup = 0;
+		for (int i = 0; i < asientos.length; i++) {
+			for (int j = 0; j < asientos[i].length; j++) {
+				if (asientos[i][j] != null)
+					bOcup++;
 			}
 		}
-		return cont;
+
+		return bOcup;
 	}
 
 	// 5
@@ -77,30 +66,38 @@ public class SalaDeCine {
 		return false; // como chota hago que pregunten por una sola fila????
 	}
 
-	/*public Integer filaDisponible(Integer columna, Integer fila) {
-		Integer contador = 0;
-		for (int i = 0; i < filas; i++) {
-			if(butacaOcupada(i, fila - 1)) {
-				contador += 1;
-				
-			}
-		}
-		return contador;
-	}*/
-	
+	/*
+	 * public Integer filaDisponible(Integer columna, Integer fila) { Integer
+	 * contador = 0; for (int i = 0; i < filas; i++) { if(butacaOcupada(i, fila -
+	 * 1)) { contador += 1;
+	 * 
+	 * } } return contador; }
+	 */
+
 	public Boolean hayEspacioParaPrueba(int cantidadPersonas) {
 		Integer lugaresEnFila = 0;
 		for (int i = 0; i < asientos.length; i++) {
-			if(i>0)
+			if (i > 0)
 				lugaresEnFila = 0;
 			for (int j = 0; j < asientos[i].length; j++) {
-				lugaresEnFila = asientos[i][j] == null ? ++ lugaresEnFila : lugaresEnFila;
-				if(lugaresEnFila == cantidadPersonas)
+				lugaresEnFila = asientos[i][j] == null ? ++lugaresEnFila : lugaresEnFila;
+				if (lugaresEnFila == cantidadPersonas)
 					return true;
 			}
 		}
 		return false;
 	}
 
-	
+	public void butacasDisponibles() {
+		for (int i = 0; i < asientos.length; i++) {
+			for (int j = 0; j < asientos[i].length; j++) {
+				if (asientos[i][j] == null)
+					System.out.print("L ");
+				else
+					System.out.print("O ");
+			}
+			System.out.println();
+		}
+	}
+
 }

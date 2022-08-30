@@ -63,7 +63,7 @@ public class SalaDeCineTest {
 		System.out.println("Ingrese el numero de fila");
 		Integer nroFila = teclado.nextInt();
 		
-		if(sala.ocuparButacaPrueba(nroColumna, nroFila)) {
+		if(sala.ocuparButaca(nroColumna, nroFila)) {
 			System.out.println("La butaca que eligió la ocupó con exito");
 		}
 
