@@ -2,79 +2,155 @@ package cineTest;
 
 import java.util.Scanner;
 
+import cine.Butaca;
 import cine.SalaDeCine;
 
 public class SalaDeCineTest {
 
-	//final static Integer BUTACA_OCUPADA = 1, OCUPAR_BUTACA = 2, CANTIDAD_BUTACAS_OCUPADAS = 3, HAY_ESPACIO_PARA = 4;
-	
 	public static void main(String[] args) {
 
-		System.out.println("Bienvenido a Hoyts. Elige la opción deseada");
-		System.out.println("Por defecto, las columnas del cine son 14 y las filas 15.\nLas butacas están compuestas por numero de columna y fila.");
-		Scanner teclado = new Scanner(System.in);
-		Integer opcionDeseada;
-		SalaDeCine sala = new SalaDeCine();
-
+		Scanner leerDatos = new Scanner(System.in);
+		SalaDeCine cineMark = new SalaDeCine();
+		int opcionElegida;
 		do {
-			System.out.println(" ");
-			System.out.println("Menú de opciones.");
-			System.out.println("1 - Ver cual butaca esta ocupada o disponible");
-			System.out.println("2 - Ocupar una butaca");
-			System.out.println("3 - Ver la cantidad totales de butacas disponibles");
-			System.out.println("4 - Ver cuanto espacio hay para determinado grupo de personas");
+			opcionElegida = operacionARealizarEn(cineMark, leerDatos);
+		} while (opcionElegida != 6);
+	}
 
-			opcionDeseada = teclado.nextInt();
+	private static void butacasOcupadas(SalaDeCine cineActual, Scanner leerDatos) {
+		System.out.println("---------- Butacas Ocupadas ----------");
+		System.out.println("Total de butacas ocupadas: " + cineActual.cantidadButacasOcupadas());
+	}
 
-			switch (opcionDeseada) {
-			case 1:
-				butacaOcupada(sala, teclado);
+	private static void disponibilidadDeButaca(SalaDeCine cineActual, Scanner leerDatos) {
+		System.out.println("------------------ Consulta de estado de Butaca ------------------");
+		int fila = seleccionarFila(leerDatos), col = seleccionarColumna(leerDatos);
+		if (cineActual.butacaOcupada(fila, col) != true)
+			System.out.println("Butaca disponible.");
+		else
+			System.out.println("La butaca no está disponible.");
+	}
+
+	private static int menuDelCine(Scanner leerDatos) {
+		int opcionElegida;
+		System.out.println("------------ Putos todos --------------");
+		System.out.println("1. Vender entrada.");
+		System.out.println("2. Consultar disponibilidad de una butaca.");
+		System.out.println("3. Ocupar una butaca.");
+		System.out.println("4. Consultar butacas ocupadas.");
+		System.out.println("5. Vender múltiples entradas.");
+		System.out.println("6. Salir.");
+
+		System.out.print("\nIngrese la opción elegida: ");
+		opcionElegida = leerDatos.nextInt();
+
+		return opcionElegida;
+	}
+
+	private static void ocuparButaca(SalaDeCine cineEnUso, Scanner leerDatos) {
+		System.out.println("\n------------------ Ocupar butacas -------------------");
+		int fila = seleccionarFila(leerDatos);
+		int col = seleccionarColumna(leerDatos);
+
+		if (cineEnUso.butacaOcupada(fila, col) != true) {
+			Butaca nuevaButaca = new Butaca();
+			cineEnUso.ocuparButaca(fila, col, nuevaButaca);
+			System.out.println("\nSe ha ocupado la butaca exitosamente.");
+		} else
+			System.out.println("\nLa butaca no se encuentra disponible. Por favor, seleccione otra butaca.");
+
+	}
+
+	private static final int VENDER_ENTRADA = 1, CONSULTAR_DISPONIBILIDAD_DE_BUTACA = 2, OCUPAR_BUTACA = 3,
+			CONSULTAR_BUTACAS_OCUPADAS = 4, VENDER_MULTIPLES_ENTRADAS = 5, SALIR = 6;
+
+	private static int operacionARealizarEn(SalaDeCine cineActual, Scanner leerDatos) {
+		int opcionElegida;
+		do {
+			opcionElegida = menuDelCine(leerDatos);
+			switch (opcionElegida) {
+			case VENDER_ENTRADA:
+				venderEntrada(cineActual, leerDatos);
 				break;
-			case 2:
-				ocuparButaca(sala, teclado);
+
+			case CONSULTAR_DISPONIBILIDAD_DE_BUTACA:
+				disponibilidadDeButaca(cineActual, leerDatos);
 				break;
-			case 3:
-				cantidadButacasOcupadas();
+
+			case OCUPAR_BUTACA:
+				ocuparButaca(cineActual, leerDatos);
 				break;
-			case 4:
-				hayEspacioPara();
+
+			case CONSULTAR_BUTACAS_OCUPADAS:
+				butacasOcupadas(cineActual, leerDatos);
 				break;
+
+			case VENDER_MULTIPLES_ENTRADAS:
+				venderMultiplesEntradas(cineActual, leerDatos);
+				break;
+
+			case SALIR:
 			default:
-				System.err.println("error");
-				break;
+				System.out.println("\nOPCIÓN INCORRECTA. REINGRESE LA OPCIÓN NUEVAMENTE.");
 			}
-
-		} while (opcionDeseada != 4);
+		} while (opcionElegida != 6);
+		return opcionElegida;
 	}
 
-	private static void butacaOcupada(SalaDeCine sala, Scanner teclado) {
-		System.out.println("Ingrese el numero de columna");
-		Integer nroColumna = teclado.nextInt();
-		System.out.println("Ingrese el numero de fila");
-		Integer nroFila = teclado.nextInt();
-		
-		System.out.println("La butaca " + nroColumna + nroFila + " esta disponible? " + sala.butacaOcupada(nroColumna, nroFila));
+	private static int seleccionarColumna(Scanner leerDatos) {
+		int columnaElegida = 0;
+		do {
+			System.out.print("\nIngrese la columna de la butaca: ");
+			columnaElegida = leerDatos.nextInt();
 
+			if (columnaElegida < 0 || columnaElegida > 9)
+				System.out.println(
+						"\nEl número de columna debe ser un número entre 0 y 9.\nReingrese la fila nuevamente.");
+
+		} while (columnaElegida < 0 || columnaElegida > 9);
+
+		return columnaElegida;
 	}
 
-	private static void ocuparButaca(SalaDeCine sala, Scanner teclado) {
-		System.out.println("Ingrese el numero de columna");
-		Integer nroColumna = teclado.nextInt();
-		System.out.println("Ingrese el numero de fila");
-		Integer nroFila = teclado.nextInt();
-		
-		if(sala.ocuparButaca(nroColumna, nroFila)) {
-			System.out.println("La butaca que eligió la ocupó con exito");
-		}
+	private static int seleccionarFila(Scanner leerDatos) {
+		int filaElegida = 0;
+		do {
+			System.out.print("\nIngrese la fila de la butaca: ");
+			filaElegida = leerDatos.nextInt();
 
+			if (filaElegida < 0 || filaElegida > 9)
+				System.out
+						.println("\nEl número de fila debe ser un número entre 0 y 9.\nReingrese la fila nuevamente.");
+
+		} while (filaElegida < 0 || filaElegida > 9);
+
+		return filaElegida;
 	}
 
-	private static void cantidadButacasOcupadas() {
+	private static void venderEntrada(SalaDeCine cineActual, Scanner leerDatos) {
+		System.out.println("Butacas disponibles: ");
+		cineActual.butacasDisponibles();
+		int fila = seleccionarFila(leerDatos), col = seleccionarColumna(leerDatos);
 
+		if (cineActual.butacaOcupada(fila, col) != true) {
+			Butaca nuevaButacaOcupada = new Butaca();
+			cineActual.ocuparButaca(fila, col, nuevaButacaOcupada);
+			System.out.println("Entrada vendida exitosamente.");
+		} else
+			System.out.println("\nLa butaca no está disponible.");
 	}
 
-	private static void hayEspacioPara() {
-		// aca pedir la cantidad de personas e informar que fila se encuentra disponible para esa cantidad de personas
+	private static void venderMultiplesEntradas(SalaDeCine cineActual, Scanner leerDatos) {
+		int cantClientes = 0;
+		System.out.println("\n------------- Venta múltiple de entradas -------------");
+		System.out.print("Ingrese el número de entradas a vender: ");
+		cantClientes = leerDatos.nextInt();
+
+		if (cineActual.hayEspacioPara(cantClientes))
+			System.out.println("\nEntradas vendidas con éxito.");
+		else
+			System.out.println("\nNo se pueden vender las entradas.");
+
 	}
 
 }
