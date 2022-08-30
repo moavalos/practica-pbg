@@ -2,24 +2,22 @@ package cine;
 
 public class SalaDeCine {
 
-	private Integer columnas;
-	private Integer filas;
-	private Integer asientos[][];
+	//private Integer columnas;
+	//private Integer filas;
+	private Butaca asientos[][];
 
 	public SalaDeCine() {
 		/*
 		 * this.butacas = new Integer[210]; this.filas = new Integer[15]; // en cada
 		 * fila entran 14 butacas
 		 */
-		this.columnas = 14; // 210 butacas
-		this.filas = 15;
-		this.asientos = new Integer[columnas][filas];
+		//this.columnas = 14; // 210 butacas
+		//this.filas = 15;
+		this.asientos = new Butaca[10][10];
 	}
 
-	// 2
-	public Boolean butacaOcupada(Integer columna, Integer fila) { 
-		// esto nos devuelve que esta ocupada
-		return asientos[columna][fila] != null;
+	public Boolean butacaOcupada(Integer fila, Integer columna) { 
+		return asientos[fila][columna] != null;
 		/*
 		 * Boolean desocupado = false; for (int i = 0; i < asientos.length; i++) { for
 		 * (int j = 0; j < asientos[0].length; j++) { if (asientos[columna][fila] ==
@@ -27,43 +25,37 @@ public class SalaDeCine {
 		 */
 	}
 
-	// 3
-	public Boolean ocuparButaca(Integer columna, Integer fila) { // esto no anda
+	public void ocuparButaca(Integer fila, Integer columna, Butaca butaca) { 
 		// ocupar una butaca si no esta ocupada
-		if (butacaOcupada(columna, fila)) {
-			for (int i = 1; i < asientos.length; i++) {
-				for (int j = 1; j < asientos[0].length; j++) { // for para saber las columnas
-					asientos[columna][fila]++;
-					return true;
-				}
+			for (int i = 0; i < asientos.length; i++) {
+				if (butacaOcupada(fila, columna)) {
+				//for (int j = 1; j < asientos[0].length; j++) { // for para saber las columnas
+					asientos[fila][columna] = butaca;
 			}
 		}
-		return false;
 
 	}
 
-	// 4
-	public Integer cantidadTotalButacasOcupadas() {
-		Integer bOcup = 0;
+	public Integer cantidadButacasOcupadas() {
+		Integer butacasOcupadas = 0;
 		for (int i = 0; i < asientos.length; i++) {
 			for (int j = 0; j < asientos[i].length; j++) {
 				if (asientos[i][j] != null)
-					bOcup++;
+					butacasOcupadas++;
 			}
 		}
 
-		return bOcup;
+		return butacasOcupadas;
 	}
 
-	// 5
 	public Boolean hayEspacioPara(Integer cantidadDePersonas, Integer columna, Integer fila) {
 		// consultar si es posible acomodar a un grupo de x personas, en forma contigua
 		for (int i = 0; i < cantidadDePersonas; i++) {
-			if (cantidadTotalButacasOcupadas() < cantidadDePersonas) {
+			if (cantidadButacasOcupadas() < cantidadDePersonas) {
 				return true;
 			}
 		}
-		return false; // como chota hago que pregunten por una sola fila????
+		return false;
 	}
 
 	/*
@@ -98,6 +90,10 @@ public class SalaDeCine {
 			}
 			System.out.println();
 		}
+	}
+
+	public Butaca[][] getAsientos() {
+		return asientos;
 	}
 
 }
