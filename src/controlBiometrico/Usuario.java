@@ -1,4 +1,4 @@
-package ControlBiometricoTDD;
+package controlBiometrico;
 
 public class Usuario {
 	

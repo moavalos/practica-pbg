@@ -1,4 +1,4 @@
-package cineTest;
+package testCine;
 
 import java.util.Scanner;
 
