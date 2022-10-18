@@ -10,7 +10,7 @@ public class SalaDeCineTest {
 	public static void main(String[] args) {
 
 		Scanner leerDatos = new Scanner(System.in);
-		SalaDeCine cineMark = new SalaDeCine();
+		SalaDeCine cineMark = new SalaDeCine(null, null);
 		int opcionElegida;
 		do {
 			opcionElegida = operacionARealizarEn(cineMark, leerDatos);
@@ -134,7 +134,7 @@ public class SalaDeCineTest {
 
 		if (cineActual.butacaOcupada(fila, col) != true) {
 			Butaca nuevaButacaOcupada = new Butaca();
-			cineActual.ocuparButaca(fila, col, nuevaButacaOcupada);
+			cineActual.ocuparButaca(fila, col);
 			System.out.println("Entrada vendida exitosamente.");
 		} else
 			System.out.println("\nLa butaca no está disponible.");

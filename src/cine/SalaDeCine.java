@@ -5,19 +5,22 @@ public class SalaDeCine {
 	// private Integer columnas;
 	// private Integer filas;
 	private Butaca asientos[][];
+	private boolean[][] sala;
 
-	public SalaDeCine() {
+	public SalaDeCine(Integer butacas, Integer filas) {
 		/*
 		 * this.butacas = new Integer[210]; this.filas = new Integer[15]; // en cada
 		 * fila entran 14 butacas
 		 */
 		// this.columnas = 14; // 210 butacas
 		// this.filas = 15;
-		this.asientos = new Butaca[10][10];
+		// this.asientos = new Butaca[10][10];
+		this.sala = new boolean[filas][butacas / filas];
 	}
 
-	public Boolean butacaOcupada(Integer fila, Integer columna) {
-		return asientos[fila][columna] != null;
+	public Boolean butacaOcupada(Integer fila, Integer asiento) {
+		// return asientos[fila][columna] != null;
+		return this.sala[fila][asiento];
 		/*
 		 * Boolean desocupado = false; for (int i = 0; i < asientos.length; i++) { for
 		 * (int j = 0; j < asientos[0].length; j++) { if (asientos[columna][fila] ==
@@ -25,38 +28,54 @@ public class SalaDeCine {
 		 */
 	}
 
-	public void ocuparButaca(Integer fila, Integer columna, Butaca butaca) {
+	public void ocuparButaca(Integer fila, Integer asiento) {
 		// ocupar una butaca si no esta ocupada
-		for (int i = 0; i < asientos.length; i++) {
-			if (butacaOcupada(fila, columna)) {
-				// for (int j = 1; j < asientos[0].length; j++) { // for para saber las columnas
-				asientos[fila][columna] = butaca;
-			}
-		}
+		/*
+		 * for (int i = 0; i < asientos.length; i++) { if (butacaOcupada(fila, columna))
+		 * { // for (int j = 1; j < asientos[0].length; j++) { // for para saber las
+		 * columnas asientos[fila][columna] = butaca; } }
+		 */
+		if (!sala[fila][asiento])
+			sala[fila][asiento] = true;
+		else
+			System.err.print("La butaca está ocupada");
 
 	}
 
 	public Integer cantidadButacasOcupadas() {
-		Integer butacasOcupadas = 0;
-		for (int i = 0; i < asientos.length; i++) {
-			for (int j = 0; j < asientos[i].length; j++) {
-				if (asientos[i][j] != null)
-					butacasOcupadas++;
-			}
-		}
-
-		return butacasOcupadas;
+		int cantidad = 0;
+		for (int i = 0; i < sala.length; i++)
+			for (int j = 0; j < sala[i].length; j++)
+				if (sala[i][j] == true)
+					cantidad++;
+		return cantidad;
 	}
 
-	public Boolean hayEspacioPara(Integer cantidadPersonas) {
+	public Boolean hayEspacioPara(Integer cantidadDePersonas) {
 		// consultar si es posible acomodar a un grupo de x personas, en forma contigua
-		Integer filaIncompleta = getFilaIncompleta(cantidadPersonas);
-		Integer primerButacaDisponible = getPrimerButacaVacia(filaIncompleta);
-		if (filaIncompleta != -1 && primerButacaDisponible != -1) {
-			venderEntradasPorFila(filaIncompleta, primerButacaDisponible, cantidadPersonas);
-			return true;
+		int fila = 0;
+		boolean hayLugares = false;
+
+		while (!hayLugares && fila < sala.length) {
+			hayLugares = hayNlugaresContiguosLibresEnLaFila(fila, cantidadDePersonas);
+			fila++;
 		}
-		return false;
+		return hayLugares;
+	}
+
+	public boolean hayNlugaresContiguosLibresEnLaFila(int fila, int cantidadDePersonas) {
+		int contadorLugaresLibres = 0;
+		int j = 0;
+		while (contadorLugaresLibres < cantidadDePersonas && j < sala[fila].length) {
+
+			if (sala[fila][j]) {
+				contadorLugaresLibres = 0;
+			} else {
+				contadorLugaresLibres++;
+			}
+			j++;
+		}
+		return (contadorLugaresLibres >= cantidadDePersonas);
 	}
 
 	private void venderEntradasPorFila(Integer filaIncompleta, Integer butacaDesde, Integer cantidadDeEntradas) {
