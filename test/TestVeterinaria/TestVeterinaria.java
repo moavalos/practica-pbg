@@ -11,6 +11,7 @@ import Veterinaria.Atencion;
 import Veterinaria.Dueño;
 import Veterinaria.DueñoInexsistenteException;
 import Veterinaria.Mascota;
+import Veterinaria.MascotaDuplicadaException;
 import Veterinaria.MascotaNoEncontradaException;
 import Veterinaria.Medicamento;
 import Veterinaria.TipoDeMascota;
@@ -76,7 +77,7 @@ public class TestVeterinaria {
 
 	@Test
 	public void queSePuedaCrearUnaAtencionConDuenioYMascotaYPrecio()
-			throws DueñoInexsistenteException, MascotaNoEncontradaException {
+			throws DueñoInexsistenteException{//MascotaNoEncontradaException {
 		Integer id = 1;
 		Dueño duenio = new Dueño(1, ",,,");
 		Mascota mascota = new Mascota(1, "...", "...", TipoDeMascota.domestica);

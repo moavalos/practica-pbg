@@ -4,8 +4,8 @@ public class Rectangulo extends Figura {
 
 	private Punto esquinaSupDer;
 
-	public Rectangulo(Punto posicion, Double ladoMayor, Double ladoMenor) {
-		super(posicion, ladoMayor, ladoMenor);
+	public Rectangulo(String color, Punto posicion, Double ladoMayor, Double ladoMenor) {
+		super(color, posicion, ladoMayor, ladoMenor);
 		calcularEsqSupDer();
 
 	}

@@ -14,6 +14,7 @@ public class TestCajaAhorro {
 		cuandoReservoSaldo(cuenta, 50.00);
 		entoncesSuSaldoEs(cuenta, 50.00);
 	}
+	/*
 	
 	deposito
 	extraer
@@ -25,7 +26,7 @@ public class TestCajaAhorro {
 	extraer
 	se = 1394.0
 	vo = cajaahorro.getsaldo
-	assertequeals ve vo
+	assertequeals ve vo*/
 
 	private void dadoQueDeposito(CuentaAhorro cuenta, Double monto) {
 		cuenta.depositar(monto);

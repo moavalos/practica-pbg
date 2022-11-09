@@ -38,13 +38,14 @@ public class Veterinaria {
 		return this.duenios.size();
 	}
 
-	public Mascota buscarMascota(Integer id) throws MascotaNoEncontradaException {
+	public Mascota buscarMascota(Integer id) {//throws MascotaNoEncontradaException {
 		for (Mascota mascota : mascotas) {
 			if (mascota.getId().equals(id)) {
 				return mascota;
 			}
 		}
-		throw new MascotaNoEncontradaException("La mascota no existe");
+		//throw new MascotaNoEncontradaException("La mascota no existe");
+		return null;
 	}
 
 	public Dueño buscarDuenio(Integer dni) throws DueñoInexsistenteException {
@@ -56,7 +57,7 @@ public class Veterinaria {
 		throw new DueñoInexsistenteException("El due�o no existe");
 	}
 	
-	public void registroDeAtenciones(Integer id, Integer dni, Integer idMascota, Double precio) throws MascotaNoEncontradaException, DueñoInexsistenteException{
+	public void registroDeAtenciones(Integer id, Integer dni, Integer idMascota, Double precio) throws DueñoInexsistenteException {//throws MascotaNoEncontradaException, DueñoInexsistenteException{
 		Dueño duenio = buscarDuenio(dni);
 		Mascota mascota = buscarMascota(idMascota);
 		Atencion atencion = new Atencion(id,duenio,mascota,precio);

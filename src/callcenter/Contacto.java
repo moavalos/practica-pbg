@@ -41,7 +41,6 @@ public class Contacto {
 	}
 
 	public boolean registrarNuevaLlamada(Llamada nueva) {
-		
 		/*
 		 * Registra una nueva llamada asociada al contacto actual.
 		 */

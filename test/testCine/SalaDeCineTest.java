@@ -54,7 +54,7 @@ public class SalaDeCineTest {
 
 		if (cineEnUso.butacaOcupada(fila, col) != true) {
 			Butaca nuevaButaca = new Butaca();
-			cineEnUso.ocuparButaca(fila, col, nuevaButaca);
+			cineEnUso.ocuparButaca(fila, col);
 			System.out.println("\nSe ha ocupado la butaca exitosamente.");
 		} else
 			System.out.println("\nLa butaca no se encuentra disponible. Por favor, seleccione otra butaca.");

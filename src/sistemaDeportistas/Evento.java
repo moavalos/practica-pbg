@@ -1,5 +1,8 @@
 package sistemaDeportistas;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Evento {
 	
 	private TipoDeEvento tipo;

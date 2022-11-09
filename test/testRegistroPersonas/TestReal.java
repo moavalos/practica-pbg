@@ -1,10 +1,16 @@
 package testRegistroPersonas;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+
+import RegistroDePersonas.Ciudad;
+import RegistroDePersonas.Direccion;
+import RegistroDePersonas.Persona;
+import RegistroDePersonas.Provincia;
+import RegistroDePersonas.Registro;
 
 public class TestReal {
 
@@ -45,7 +51,7 @@ public class TestReal {
 		String NOMBRRE_ESPERADO = "buenos aires";
 		int CANTIDAD_DE_REGISTROS = 3;
 
-		RegistrarPersona anses = new RegistrarPersona();
+		Registro anses = new Registro();
 		anses.registrarPersona(pablo);
 		anses.registrarPersona(juan);
 

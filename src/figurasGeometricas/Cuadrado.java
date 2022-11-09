@@ -6,23 +6,18 @@ public class Cuadrado extends Rectangulo {
 	private String color;
 
 	public Cuadrado(String nombre, Punto posicion, Double ladoMayor, Double ladoMenor) {
-		super(posicion, ladoMayor, ladoMayor);
+		super(nombre, posicion, ladoMayor, ladoMayor);
 		this.nombre = nombre;
 	}
 
 	public Cuadrado(String nombre, String color, Punto posicion, Double ladoMayor, Double ladoMenor) {
-		super(posicion, ladoMayor, ladoMayor);
+		super(color, posicion, ladoMayor, ladoMayor);
 		this.nombre = nombre;
 		this.color = color;
 	}
 
-	public Cuadrado(Punto posicion, Double ladoMayor, Double ladoMenor) {
-		super(posicion, ladoMayor, ladoMayor);
-
-	}
-
-	public Cuadrado(Punto posicion, Double ladoMayor) {
-		super(posicion, ladoMayor, ladoMayor);
+	public Cuadrado(String color, Punto posicion, Double ladoMayor) {
+		super(color, posicion, ladoMayor, ladoMayor);
 
 	}
 

@@ -1,8 +1,19 @@
 package testSistemaDeportistas;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+
 import org.junit.Test;
 
+import sistemaDeportistas.Ciclista;
+import sistemaDeportistas.Club;
+import sistemaDeportistas.Corredor;
+import sistemaDeportistas.Deportista;
 import sistemaDeportistas.INadador;
+import sistemaDeportistas.NoEstaPreparado;
+import sistemaDeportistas.TipoDeBicicleta;
+import sistemaDeportistas.TipoDeEvento;
+import sistemaDeportistas.Triatleta;
 
 public class tets {
 	@Test
@@ -25,9 +36,9 @@ public class tets {
 	
 	@Test
 	public void  queSePuedaCrearUnCiclista() {
-		Ciclista nuevo = new Ciclista(3, "Enzo", "Ruta");
+		Ciclista nuevo = new Ciclista(3, "Enzo", TipoDeBicicleta.RUTA);
 
-		assertEquals("Ruta", nuevo.getTipoDeBicicleta());
+		assertEquals(TipoDeBicicleta.RUTA, nuevo.getTipoDeBicicleta());
 		assertEquals((Integer) 3, nuevo.getNumeroDeSocio());
 	}
 
@@ -48,16 +59,16 @@ public class tets {
 		actual.agregarDeportista(new Corredor(1000, "Camila", 42000));
 		actual.agregarDeportista(new Corredor(1001, "Natalia", 5000));
 		actual.agregarDeportista(new Corredor(1002, "Jorge", 21000));
-		actual.agregarDeportista(new Nadador(1003, "Lucrecia", "Pecho"));
+		actual.agregarDeportista(new INadador(1003, "Lucrecia", "Pecho"));
 		actual.agregarDeportista(new Triatleta(1004, "Tamara", "Olimpico", TipoDeBicicleta.RUTA));
-		actual.agregarDeportista(new Ciclista(1005, "Alberto", "Mountain"));
-		actual.agregarDeportista(new Ciclista(1006, "Domingo", "BMX"));
+		actual.agregarDeportista(new Ciclista(1005, "Alberto", TipoDeBicicleta.MOUNTAIN));
+		actual.agregarDeportista(new Ciclista(1006, "Domingo", TipoDeBicicleta.BMX));
 		actual.agregarDeportista(new Corredor(1007, "Luciana", 10000));
-		actual.agregarDeportista(new Nadador(1008, "Luna", "Crol"));
-		actual.agregarDeportista(new Nadador(1009, "Victor", "Mariposa"));
+		actual.agregarDeportista(new INadador(1008, "Luna", "Crol"));
+		actual.agregarDeportista(new INadador(1009, "Victor", "Mariposa"));
 		actual.agregarDeportista(new Triatleta(1004, "Cecilia", "Ironman", TipoDeBicicleta.TRIA));
 			
-		assertEquals((Integer) 10, actual.getCantidadSocios());		
+		assertEquals((Integer) 11, actual.getCantidadSocios());		
 	}
 	
 	@Test (expected = NoEstaPreparado.class)
