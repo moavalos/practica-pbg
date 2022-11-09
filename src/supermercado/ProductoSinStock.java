@@ -1,5 +1,5 @@
 package supermercado;
 
-public class ProductoSinStock extends Exception {
+public class ProductoSinStock extends Exception{
 
 }

@@ -1,4 +1,4 @@
-package testSupermercado;
+package supermercado;
 
 public class Heladera extends Electrodomestico {
 

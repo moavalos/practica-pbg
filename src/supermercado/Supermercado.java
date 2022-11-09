@@ -1,60 +1,56 @@
 package supermercado;
 
-import java.util.List;
-import java.util.Map;
+import java.util.ArrayList;
 import java.util.Set;
 
+import sistemaDeportistas.Deportista;
+
 public class Supermercado {
-
-	String nombre; // Nombre del supermercado
-	private Set<Producto> productosExistentes; // Listado de productos que se comercializan
-	private List<Producto> productosDisponibles; // Detalle de cada producto ingresado
-	private Map<Integer, Venta> ventasRealizadas; // Listado de ventas realizadas (identificadas por el n�mero de venta)
-	Integer contadorDeVentas; // Identificador del n�mero de venta
-
+	
+	private String nombre;
+	private ArrayList<Producto> productos;
+	
 	public Supermercado(String nombre) {
-		// Constructor de la clase
+		this.nombre = nombre;
+		this.productos = new ArrayList<>();
 	}
 
-	public void ingresarProducto(Producto nuevo) {
-		// Ingresa un nuevo producto
+	public String getNombre() {
+		return nombre;
 	}
 
-	public Set<Producto> getOfertaDeProductos() {
-		return productosExistentes;
-		// Devuelve el conjunto de productos que se comercializan
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
-	public Integer getStock(Integer codigo) {
-		return codigo;
-		// Devuelve la cantidad de unidades de un producto determinado
+	public void ingresarProducto(Producto producto) {
+		this.productos.add(producto);
+		
 	}
 
-	private Boolean productoExiste(Integer codigoDeProducto) throws ProductoInexistente {
+	public ArrayList<Producto> getOfertaDeProductos() {
+		// TODO Auto-generated method stub
 		return null;
-		// Verifica si un producto existe
 	}
 
-	private Producto getProductoPorCodigo(Integer codigoDeProducto) throws ProductoSinStock {
+	public ArrayList<Producto> getStock(int i) {
+		// TODO Auto-generated method stub
 		return null;
-		// Busca la disponibilidad de un producto
 	}
 
-	public Integer registrarNuevaVenta(Integer dniDelComprador, String nombreDelComprador) {
-		// Registra una nueva venta
-		ventasRealizadas.put(++contadorDeVentas, new Venta(dniDelComprador, nombreDelComprador));
-		return contadorDeVentas;
-	}
-
-	public Venta getVenta(Integer nueroDeVenta) {
+	public Integer registrarNuevaVenta(int i, String string) {
+		// TODO Auto-generated method stub
 		return null;
-		// Devuelve una venta en funci�n de su n�mero identificatorio
 	}
 
-	public void agregarAlCarrito(Integer numeroDeVenta, Integer codigoDeProducto)
-			throws ProductoSinStock, ProductoInexistente {
-		// Incorpora al carrito de compras de la venta identificada por el
-		// "numeroDeVenta", el producto identificado por el "codigoDeProducto"
+	public void agregarAlCarrito(Integer numeroDeVenta, Integer pRODUCTO_A_COMPRAR_1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Object getVenta(Integer numeroDeVenta) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

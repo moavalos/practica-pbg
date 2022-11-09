@@ -1,4 +1,4 @@
-package testSupermercado;
+package supermercado;
 
 public class Galletitas extends Comestible {
 	
