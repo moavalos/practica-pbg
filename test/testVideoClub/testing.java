@@ -21,7 +21,6 @@ import videoClub.Videojuego;
 public class testing {
 	@Test
 	void queSePuedaCrearUnaPelicula() {
-		// Preparación
 		final Integer CODIGO_ESPERADO = 1;
 		final String DESCRIPCION_ESPERADA = "Exterminators II";
 		final Genero GENERO_ESPERADO = Genero.ACCION;
@@ -30,12 +29,10 @@ public class testing {
 		final String ACTOR_1_ESPERADO = "Guillermo Francella";
 		final String ACTOR_2_ESPERADO = "Emilio Disi";
 		
-		// Ejecución
 		Pelicula pelicula = new Pelicula(CODIGO_ESPERADO, DESCRIPCION_ESPERADA, GENERO_ESPERADO, ANO_DE_ESTRENO_ESPERADO, DIRECTOR_ESPERADO);
 		pelicula.agregarActor(ACTOR_1_ESPERADO);
 		pelicula.agregarActor(ACTOR_2_ESPERADO);
 		
-		// Validación
 		assertEquals(CODIGO_ESPERADO, pelicula.getCodigo());
 		assertEquals(DESCRIPCION_ESPERADA, pelicula.getDescripcion());
 		assertEquals(GENERO_ESPERADO, pelicula.getGenero());
@@ -147,7 +144,7 @@ public class testing {
 		
 		video.agregarProducto(nuevoProducto);
 		
-		assertEquals(ESTADO_INICIAL_ESPERADO, ((Object) video.buscarProducto(nuevoProducto)).getEstadoActual());
+		assertEquals(ESTADO_INICIAL_ESPERADO, video.buscarProducto(nuevoProducto).getEstadoActual());
 		assertTrue(video.vender(nuevoProducto, nuevoCliente));
 		assertEquals(NOMBRE_ESPERADO, video.buscarProducto(nuevoProducto).getQuienPoseeElProducto().getNombre());
 		assertEquals(ESTADO_FINAL_ESPERADO, video.buscarProducto(nuevoProducto).getEstadoActual());

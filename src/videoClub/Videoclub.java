@@ -21,17 +21,17 @@ public class Videoclub {
 		
 	}
 
-	public Producto buscarProducto(Libro nuevoProducto) {
+	public Producto buscarProducto(Producto nuevoProducto) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public void agregarProducto(Libro nuevoProducto) {
+	public boolean vender(Producto nuevoProducto, Cliente nuevoCliente) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
-	public boolean vender(Producto nuevoProducto, Cliente nuevoCliente) {
+	public boolean alquilar(Producto nuevoProducto, Cliente nuevoCliente) {
 		// TODO Auto-generated method stub
 		return false;
 	}

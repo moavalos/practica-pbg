@@ -2,8 +2,6 @@ package videoClub;
 
 public class Videojuego extends Alquilable{
 	
-	private Integer codigo;
-	private String descripcion;
 	private TipoDeConsola tipo;
 	
 	public Videojuego(Integer codigo, String descripcion, TipoDeConsola tipo) {

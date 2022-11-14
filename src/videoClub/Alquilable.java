@@ -1,17 +1,14 @@
 package videoClub;
 
-public class Alquilable {
-	
-	private Integer codigo;
-	private String descripcion;
+public class Alquilable extends Producto {
+
 	private Double precioAlquiler;
-	
+
 	public Alquilable(Integer codigo, String descripcion) {
-		this.codigo = codigo;
-		this.descripcion = descripcion;
+		super(codigo, descripcion);
 		this.precioAlquiler = 0.0;
 	}
-	
+
 	public Double getPrecioAlquiler() {
 		return precioAlquiler;
 	}
@@ -19,20 +16,5 @@ public class Alquilable {
 	public void setPrecioAlquiler(Double precioAlquiler) {
 		this.precioAlquiler = precioAlquiler;
 	}
-
-	public Integer getCodigo() {
-		return codigo;
-	}
-	public void setCodigo(Integer codigo) {
-		this.codigo = codigo;
-	}
-	public String getDescripcion() {
-		return descripcion;
-	}
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-	
-	
 
 }
