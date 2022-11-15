@@ -45,19 +45,27 @@ public class test {
 	@Test
 	public void queNoSePuedaCambiarDeChoferSiHayAcompañanteEnLaMoto() {
 		Pasajero acompañante = new Pasajero();
-		Motocicleta mtc = new Motocicleta(1200.0, "dsa", null);
-		
-		//mtc.agregarAcompañanteOPasajero(acompañante);
-		
+		Motocicleta mtc = new Motocicleta(1200.0, "dsa", acompañante);
+
+		// mtc.agregarAcompañanteOPasajero(acompañante);
+
 		String choferNuevo = "Susana";
-		
+
 		assertEquals(choferNuevo, mtc.cambiarChofer(choferNuevo));
-		
+
 	}
 
 	@Test
 	public void queNoSePuedaCambiarDeChoferSiHayPasajeroEnAutobus() {
-
+		String chofer = "fjkdlñ";
+		Autobus atb = new Autobus(50000.0, chofer);
+		
+		Pasajero p = new Pasajero();
+		//atb.agregarAcompañanteOPasajero(p);
+		
+		String choferNuevo = "kfgdlñs";
+		
+		assertEquals(choferNuevo, atb.cambiarChofer(choferNuevo));
 	}
 
 	@Test

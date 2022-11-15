@@ -14,14 +14,18 @@ public class Autobus extends Vehiculo {
 	}
 
 	@Override
-	public void cambiarChofer(String chofer) {
-		if (getPasajeros() == null) // no se puede cambiar de chofer si hay pasajero
+	public String cambiarChofer(String chofer) {
+		if (getPasajeros().size() == 0) {// no se puede cambiar de chofer si hay pasajero
 			setChofer(chofer);
+			return chofer;
+		}
+		return null;
+
 	}
 
 	@Override
 	public void agregarAcompañanteOPasajero(Pasajero pasajero) {
-		if (getPasajeros().size() <= CANT_ASIENTOS)
+		if (getCantidadPasajeros() <= CANT_ASIENTOS)
 			pasajeros.add(pasajero);
 
 	}
@@ -35,7 +39,6 @@ public class Autobus extends Vehiculo {
 	}
 
 	public Integer getCantidadPasajeros() {
-		// TODO Auto-generated method stub
 		return this.pasajeros.size();
 	}
 
