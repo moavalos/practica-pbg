@@ -4,15 +4,20 @@ public class Empresa {
 
 	private String nombreEmpresa;
 	private Contacto[] contactos;
+	private Integer zonasDeCobertura[];
+	// private Llamada llamadas[];
+
+	public Empresa(String nombreEmpresa) {
+		this.nombreEmpresa = nombreEmpresa;
+		this.contactos = new Contacto[100];
+		this.zonasDeCobertura = new Integer[100000];
+	}
 
 	public String getNombreEmpresa() {
 		return nombreEmpresa;
 	}
 
 	public boolean agregarNuevoContacto(Contacto nuevo) {
-		/*
-		 * Incorpora un nuevo contacto a la empresa
-		 */
 		for (int i = 0; i < contactos.length; i++) {
 			if (contactos[i] == null) {
 				contactos[i] = nuevo;
@@ -24,6 +29,12 @@ public class Empresa {
 	}
 
 	public boolean agregarNuevaZonaDeCobertura(int codigoPostal) {
+		for (int i = 0; i < zonasDeCobertura.length; i++) {
+			if (zonasDeCobertura[i] == null) {
+				zonasDeCobertura[codigoPostal] = codigoPostal;
+				return true;
+			}
+		}
 		/*
 		 * Incorpora una nueva zona de cobertura (Las zonas de cobertura se identifican
 		 * por el codigo postal)
@@ -33,13 +44,24 @@ public class Empresa {
 	}
 
 	private boolean elCodigoPostalEstaDentroDeLaZonaDeCobertura(int codigoPostal) {
-		/*
-		 * Determina si un c�digo postal est� dentro de la zona de cobertura
-		 */
+		for (int i = 0; i < zonasDeCobertura.length; i++) {
+			if (zonasDeCobertura[i].equals(codigoPostal)) {
+				return true;
+
+			}
+		}
 		return false;
 	}
 
 	public Contacto buscarCandidato() {
+		Llamada l = new Llamada(false, "fdsfd");
+		for (int i = 0; i < contactos.length; i++) {
+			// for (int j = 0; j < zonasDeCobertura.length; j++) {
+			if (!(contactos[i].getEsCliente()) && l.isFueExitosa()
+					&& contactos[i].getCodigo().equals(zonasDeCobertura)) {
+
+			}
+		}
 		/*
 		 * Para determinar qu� contacto el sistema debe mostrar, se debe realizar la
 		 * siguiente b�squeda: 1. El contacto NO debe ser cliente a�n. 2. El contacto

@@ -20,8 +20,9 @@ public class Automovil extends Vehiculo {
 
 	@Override
 	public void agregarAcompañanteOPasajero(Pasajero pasajero) {
-		if (cantidadDePasajeros() <= 3)
+		if (cantidadDePasajeros() < 3) {
 			pasajeros.add(pasajero);
+		}
 
 	}
 

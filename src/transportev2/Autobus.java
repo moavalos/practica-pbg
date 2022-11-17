@@ -5,7 +5,6 @@ import java.util.LinkedList;
 public class Autobus extends Vehiculo {
 
 	private LinkedList<Pasajero> pasajeros;
-	private final Integer CANT_ASIENTOS = 3;
 
 	public Autobus(Double cantKilometrosRecorridos, String chofer) {
 		super(cantKilometrosRecorridos, chofer);
@@ -25,8 +24,10 @@ public class Autobus extends Vehiculo {
 
 	@Override
 	public void agregarAcompañanteOPasajero(Pasajero pasajero) {
-		if (getCantidadPasajeros() <= CANT_ASIENTOS)
+		// tienen q ser hasta 20 pasajeros pero mucho entraste
+		if (getCantidadPasajeros() < 3) {
 			pasajeros.add(pasajero);
+		}
 
 	}
 

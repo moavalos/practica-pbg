@@ -70,6 +70,20 @@ public class test {
 
 	@Test
 	public void queSoloEntre1ChoferY3PasajerosEnAutomovil() {
+		Automovil atm = new Automovil(150000.0, "pepe");
+		Pasajero p1 = new Pasajero();
+		Pasajero p2 = new Pasajero();
+		Pasajero p3 = new Pasajero();
+		Pasajero p4 = new Pasajero();
+		
+		atm.agregarAcompañanteOPasajero(p1);
+		atm.agregarAcompañanteOPasajero(p2);
+		atm.agregarAcompañanteOPasajero(p3);
+		atm.agregarAcompañanteOPasajero(p4);
+		
+		Integer valorEsperado = 3;
+
+		assertEquals(valorEsperado, atm.cantidadDePasajeros());
 
 	}
 
@@ -79,19 +93,18 @@ public class test {
 	}
 
 	@Test
-	public void queEnElAutobusSoloSePermitan20Pasajeros() {
+	public void queEnElAutobusSoloSePermitan20Pasajeros() { // solo uso 3 bue
 		Autobus atb = new Autobus(1200.0, "Pepito");
 		Pasajero p1 = new Pasajero();
 		Pasajero p2 = new Pasajero();
 		Pasajero p3 = new Pasajero();
-		// Pasajero p4 = new Pasajero();
-		// Pasajero p5 = new Pasajero();
+		Pasajero p4 = new Pasajero();
 
 		atb.agregarAcompañanteOPasajero(p1);
 		atb.agregarAcompañanteOPasajero(p2);
 		atb.agregarAcompañanteOPasajero(p3);
-		// atb.agregarAcompañanteOPasajero(p4);
-		// atb.agregarAcompañanteOPasajero(p5);
+		atb.agregarAcompañanteOPasajero(p4); 
+		// el p4 no lo agrega porque se permiten hasta 3 pasajeros
 
 		Integer valorEsperado = 3;
 
