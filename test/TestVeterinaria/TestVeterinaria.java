@@ -77,7 +77,7 @@ public class TestVeterinaria {
 
 	@Test
 	public void queSePuedaCrearUnaAtencionConDuenioYMascotaYPrecio()
-			throws DueñoInexsistenteException{//MascotaNoEncontradaException {
+			throws DueñoInexsistenteException{//, MascotaNoEncontradaException {
 		Integer id = 1;
 		Dueño duenio = new Dueño(1, ",,,");
 		Mascota mascota = new Mascota(1, "...", "...", TipoDeMascota.domestica);
