@@ -1,7 +1,82 @@
 package biblioteca;
 
-public class Libro {
-	
+import java.util.Objects;
+
+public class Libro implements Comparable<Libro> {
+
+	private String nombreDelLibro;
+	private String nombreDelAutor;
+	private Genero genero;
+	private Integer cantidadDeCaracteresDelLibro;
+	private Integer añoDePublicacion;
+	private Boolean fueComprado;
+	public Integer cantidadDeVecesComprado;
+
+	public Libro(String nombreDelLibro, String nombreDelAutor, Genero genero, Integer añoDePublicacion) {
+		this.nombreDelLibro = nombreDelLibro;
+		this.nombreDelAutor = nombreDelAutor;
+		this.genero = genero;
+		this.cantidadDeCaracteresDelLibro = this.nombreDelLibro.length();
+		this.añoDePublicacion = añoDePublicacion;
+		this.fueComprado = false;
+		this.cantidadDeVecesComprado = 0;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(nombreDelAutor, nombreDelLibro);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Libro other = (Libro) obj;
+		return Objects.equals(nombreDelAutor, other.nombreDelAutor)
+				&& Objects.equals(nombreDelLibro, other.nombreDelLibro);
+	}
+
+	public Genero getGenero() {
+		return genero;
+	}
+
+	public String getNombreDelLibro() {
+		return nombreDelLibro;
+	}
+
+	@Override
+	public int compareTo(Libro otroLibro) {
+		return this.nombreDelAutor.compareTo(otroLibro.nombreDelAutor);
+	}
+
+	public String getNombreDelAutor() {
+		return nombreDelAutor;
+	}
+
+	public Integer getCantidadDeCaracteresDelLibro() {
+		return cantidadDeCaracteresDelLibro;
+	}
+
+	public Integer getAñoDePublicacion() {
+		return añoDePublicacion;
+	}
+
+	public void setFueComprado(Boolean fueComprado) {
+		this.fueComprado = fueComprado;
+	}
+
+	public Integer getCantidadDeVecesComprado() {
+		return cantidadDeVecesComprado;
+	}
+
+	public Boolean getFueComprado() {
+		return fueComprado;
+	}
+
 	private Integer longitud;
 	private String apellidoAutor;
 	private String titulo;
@@ -45,6 +120,5 @@ public class Libro {
 	public void setFechaPublicacion(String fechaPublicacion) {
 		this.fechaPublicacion = fechaPublicacion;
 	}
-	
 
 }
