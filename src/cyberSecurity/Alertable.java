@@ -9,5 +9,6 @@ public interface Alertable {
 	public Boolean getCasoSospechoso();
 	public Boolean getFueFraude();
 	void monitorear(Set<Denunciable> listaNegra) throws FraudeException;
+	Integer calcularScore(Set<Denunciable> listaNegra);
 
 }

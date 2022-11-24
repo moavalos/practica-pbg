@@ -1,6 +1,6 @@
 package cyberSecurity;
 
-public class PagoConQR extends TransaccionMonetaria implements Rechazable{
+public abstract class PagoConQR extends TransaccionMonetaria implements Rechazable{
 
 	private Integer codigoQR;
 	private Cliente destino;
@@ -25,30 +25,6 @@ public class PagoConQR extends TransaccionMonetaria implements Rechazable{
 
 	public void setDestino(Cliente destino) {
 		this.destino = destino;
-	}
-
-	@Override
-	public void monitorear() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void monitorear(Set<Denunciable> listaNegra) throws FraudeException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Integer calcularScore(Set<Denunciable> listaNegra) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Integer getScore() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

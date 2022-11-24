@@ -4,7 +4,7 @@ public class TransaccionMonetaria {
 private Double monto;
 	
 	public TransaccionMonetaria(Cliente cliente, Dispositivo dispositivo, Double monto) {
-		super(cliente, dispositivo);
+		super();
 		this.setMonto(monto);
 	}
 

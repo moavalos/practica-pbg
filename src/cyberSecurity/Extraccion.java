@@ -2,7 +2,7 @@ package cyberSecurity;
 
 import java.util.Set;
 
-public class Extraccion extends Monetaria implements Rechazable, Alertable {
+public abstract class Extraccion extends TransaccionMonetaria implements Rechazable, Alertable {
 
 	private Integer score;
 	private Boolean casoSospechoso;
@@ -14,9 +14,7 @@ public class Extraccion extends Monetaria implements Rechazable, Alertable {
 	}
 
 	@Override
-	public Integer calcularScore(Set<Denunciable> listaNegra) {
-		
-		
+	public Integer calcularScore(Set<Denunciable> listaNegra) {	
 		if(!super.getQuienLaRealiza().existeDispositivo(super.getDesdeDondeSerealiza())) {
 			score+=Rechazable.SCORE_DISPOSITIVO_NUEVO;
 		}
@@ -78,30 +76,6 @@ public class Extraccion extends Monetaria implements Rechazable, Alertable {
 	@Override
 	public Boolean getFueFraude() {
 		return fueFraude;
-	}
-
-	@Override
-	public void monitorear(cyberSecurity.Set<Denunciable> listaNegra) throws FraudeException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Integer calcularScore(cyberSecurity.Set<Denunciable> listaNegra) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void monitorear(cyberSecurity.Set<Denunciable> listaNegra) throws FraudeException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Integer calcularScore(cyberSecurity.Set<Denunciable> listaNegra) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

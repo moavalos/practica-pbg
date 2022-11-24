@@ -1,7 +1,8 @@
 package cyberSecurity;
 
+import java.util.Set;
+
 public interface Rechazable {
-	public void monitorear(Set<Denunciable> listaNegra) throws FraudeException;
 	public Integer calcularScore(Set<Denunciable> listaNegra);
 	public Integer getScore();
 	public Integer UMBRAL_RECHAZO = 80;

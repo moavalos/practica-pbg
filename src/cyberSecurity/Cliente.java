@@ -1,5 +1,8 @@
 package cyberSecurity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Cliente implements Denunciable {
 
 	private String cuit;

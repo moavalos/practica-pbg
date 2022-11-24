@@ -4,9 +4,18 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import billeteras.Billetera;
+import billeteras.CBUInvalidoException;
+import billeteras.CVUInvalidoException;
+import billeteras.Comercio;
+import billeteras.Consumidor;
+import billeteras.CuentaBancaria;
+import billeteras.CuitInvalidoException;
 import billeteras.NumeroDeTarjetaInvalidoException;
 import billeteras.Pagadora;
+import billeteras.TarjetaDeCredito;
 import billeteras.TarjetaDeDebito;
+import billeteras.Transferible;
 
 public class testingg {
 
@@ -20,7 +29,7 @@ public class testingg {
 		final double SALDO_ESPERADO = 10000.0;
 		
 		// Ejecuci�n
-		Pagadora tarjetaDeDebito = new TarjetaDeDebito(NUMERO_ESPERADO, TITULAR_ESPERADO, FECHA_DE_VENCIMIENTO_ESPERADO, CODIGO_DE_SEGURIDAD_ESPERADO);
+		Pagadora tarjetaDeDebito = (Pagadora) new TarjetaDeDebito(NUMERO_ESPERADO, TITULAR_ESPERADO, FECHA_DE_VENCIMIENTO_ESPERADO, CODIGO_DE_SEGURIDAD_ESPERADO);
 		tarjetaDeDebito.setSaldo(10000.0);
 		
 		// Verificaci�n
