@@ -1,10 +1,17 @@
 package autopista;
 
-public class Automovil {
+public class Automovil extends Vehiculo implements Imultable {
 
-	//Si es necesario Utilice herencia o implemente de Interfaces
-//	Se debe crear contructeres getters y Setters y loos que crean convenientes
-	
-//el Limite de velociadad para autos es de 130km
-//en caso que supere dicho limite el este sera multado
+	private final Integer limiteVelocidad = 130;
+
+	public Automovil() {
+		setLimiteVelocidad(limiteVelocidad);
+	}
+
+	@Override
+	public Boolean enInfraccion() {
+		if (getVelocidadActual() > getLimiteVelocidad())
+			return true;
+		return false;
+	}
 }

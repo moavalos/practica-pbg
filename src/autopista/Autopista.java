@@ -5,28 +5,29 @@ import java.util.HashSet;
 import java.util.TreeSet;
 
 public class Autopista {
-	// Si es necesario Utilice herencia o implemente de Interfaces
-	// Se debe crear contructeres getters y Setters y los atributos o metodos que
-	// crean convenientes
-	private HashMap<Integer, Vehiculo> telepase;
-	private HashSet<Vehiculo> vehiculosEnCirculacion;
+
+	private HashMap<Integer, Vehiculo> telepase = new HashMap<Integer, Vehiculo>();
+	private HashSet<Vehiculo> vehiculosEnCirculacion = new HashSet<Vehiculo>();
 
 	public Boolean registrarTelepase(Integer numeroTelpase, Vehiculo vehiculo) {
-
-		return null;
+		this.telepase.put(numeroTelpase, vehiculo);
+		return true;
 	}
 
-	public Boolean ingresarAutopista(Integer numeroTelepase) {
-		// si el telepase no esta registrado lanza una Exceptios del tipo
-		// VehiculoNotFounException
-		// y no permite ingresar al autopista
+	public Boolean ingresarAutopista(Integer numeroTelepase, Vehiculo vehiculo) throws VehiculoNotFounException {
+		if (registrarTelepase(numeroTelepase, vehiculo)) {
+			this.vehiculosEnCirculacion.add(vehiculo);
+			return true;
+		}
+		return false;
 
-		return null;
 	}
 
-	public void salirAutpista(Vehiculo vehiculo) {
+	public void salirAutpista(Vehiculo vehiculo) throws VehiculoNotFounException {
 		// lanza Una exception VehiculoNotFounException si no esta en circulacion
-
+		if (vehiculosEnCirculacion.contains(vehiculo)) {
+			vehiculosEnCirculacion.remove(vehiculo);
+		}
 	}
 
 	public TreeSet<Vehiculo> obtenerVehiculosConExcesosDeVelocidadOrdenadosPorPatente() {
@@ -35,8 +36,7 @@ public class Autopista {
 	}
 
 	public Integer cantidadDeVehiculosENCirculacion() {
-
-		return 0;
+		return this.vehiculosEnCirculacion.size();
 	}
 
 }
