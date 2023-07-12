@@ -1,50 +1,59 @@
 package testTorneoArqueria;
 
-import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Test;
 
 import torneoArqueria.Atracador;
+import torneoArqueria.Atraco;
 import torneoArqueria.Banco;
+import torneoArqueria.BancoNoEncontradoException;
 import torneoArqueria.Banda;
+import torneoArqueria.ClaveInexistenteException;
+import torneoArqueria.NoSeEncuentraAtracadorException;
 import torneoArqueria.Vigilancia;
+import torneoArqueria.Vigilante;
 import torneoArqueria.Persona;
+import torneoArqueria.PersonaDuplicadaException;
 
 public class test {
 
 	@Test
 	public void testQueRegistroUnBanco() {
-		Vigilancia vigilancia = new Vigilancia("Nombre De la Compania de Vigilancia");
 
+		Vigilancia vigilancia = new Vigilancia("Nombre De la Compania de Vigilancia");
 		Integer idbanco = 1;
 		Banco banco = new Banco(idbanco, "la Casa de Papel");
 		vigilancia.agregarBanco(banco);
+		Integer cantidadEsperada = 1;
+		assertEquals(cantidadEsperada, vigilancia.getCantidadBancos());
 
 	}
 
 	@Test
-	public void quePuedaRegistrarUnAtracador() {
-		Vigilancia vigilancia = new Vigilancia ("Nombre De la Compania de Vigilancia");
+	public void quePuedaRegistrarUnAtracador() throws PersonaDuplicadaException {
+		Vigilancia vigilancia = new Vigilancia("Nombre De la Compania de Vigilancia");
 		Integer idbanda = 1;
-		String nombre="La Casa de Papel";
-		Banda banda = new Banda (idbanda,nombre);
-		
-		Integer dni= 1;
-		nombre="Ursula";
-		String apellido= "Corbero";
-		String apodo="Tokio";
-		
-		//No Cambiar esta Linea
-		Persona atracador = new Atracador (dni, nombre, apellido,apodo,banda );
-		vigilancia.registrarPersona (atracador);
+		String nombre = "La Casa de Papel";
+		Banda banda = new Banda(idbanda, nombre);
+
+		Integer dni = 1;
+		nombre = "Ursula";
+		String apellido = "Corbero";
+		String apodo = "Tokio";
+
+		// No Cambiar esta Linea
+		Persona atracador = new Atracador(dni, nombre, apellido, apodo, banda);
+		vigilancia.registrarPersona(atracador);
 		Integer valorEsperado = 1;
-		
-		//Compleatar el Assert
-		assertEquals(valorEsperado, );
-		
+
+		// Compleatar el Assert
+		assertEquals(valorEsperado, vigilancia.getCantidadPersonas());
+
 	}
 
-	@Test(expected = PersonaDuplicadaException.class)
-	public void queCuandoSeRegistre2PersonasConElMismoDNiLanceUnaExpcionPersonaDuplicadaException() {
+	@Test
+	public void queCuandoSeRegistre2PersonasConElMismoDNiLanceUnaExpcionPersonaDuplicadaException()
+			throws PersonaDuplicadaException {
 		Vigilancia vigilancia = new Vigilancia("Nombre De la Compania de Vigilancia");
 		// Creo Vigilante
 
@@ -63,10 +72,15 @@ public class test {
 		Persona atracador = new Atracador(dni, nombre, apellido, apodo, banda);
 		vigilancia.registrarPersona(atracador);
 
+		assertThrows(PersonaDuplicadaException.class, () -> {
+			vigilancia.registrarPersona(atracador);
+		});
+
 	}
 
 	@Test
-	public void queSePuedaRegistraUnAtraco() {
+	public void queSePuedaRegistraUnAtraco() throws PersonaDuplicadaException, NoSeEncuentraAtracadorException,
+			BancoNoEncontradoException, ClaveInexistenteException {
 
 		Vigilancia vigilancia = new Vigilancia("Nombre De la Compania de Vigilancia");
 		Integer idBanda = 1;
@@ -86,8 +100,7 @@ public class test {
 		Banco banco = new Banco(idBanco, "la Casa de Papel");
 		vigilancia.agregarBanco(banco);
 
-		vigilancia.registrarAtraco(dni, id_banco);
-		Integer valorEsperado = 1;
+		vigilancia.registrarAtraco(dni, idBanco);
 
 		Integer claveAtraco = 1;
 		Atraco atraco = vigilancia.buscarAtracoPorClave(claveAtraco);
@@ -96,27 +109,6 @@ public class test {
 
 		// No cambiar
 		assertTrue(bancoEsperado.equals(atraco.getBanco()));
-
-	}
-
-	@Test
-	private void queSePuedaObtenerLosAtracadoresOrdenadosPorApodos() {
-
-	}
-
-//Cree un 3 test a su eleccion para que pruebe el resto de las funcionalidades
-	@Test
-	private void testSignificativo1() {
-
-	}
-
-	@Test
-	private void testSignificativo2() {
-
-	}
-
-	@Test
-	private void testSignificativo3() {
 
 	}
 

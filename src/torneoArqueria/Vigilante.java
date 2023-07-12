@@ -2,8 +2,19 @@ package torneoArqueria;
 
 public class Vigilante extends Persona {
 
+	private Banco banco;
+
 	public Vigilante(Integer dni, String nombre, String apellido, Banco banco) {
-		// TODO Auto-generated constructor stub
+		super(dni, nombre, apellido);
+		this.banco = banco;
+	}
+
+	public Banco getBanco() {
+		return banco;
+	}
+
+	public void setBanco(Banco banco) {
+		this.banco = banco;
 	}
 
 }

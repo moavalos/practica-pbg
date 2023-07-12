@@ -5,7 +5,7 @@ public class Cumple extends Evento {
 	private Agasajado agasajado;
 
 	public Cumple(Agasajado agasajado) {
-		super("El cumple de " + agasajado.getNombre());
+		super(agasajado);
 		this.agasajado = agasajado;
 	}
 

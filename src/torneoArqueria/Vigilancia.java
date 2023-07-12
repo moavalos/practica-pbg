@@ -10,24 +10,23 @@ import java.util.Set;
 public class Vigilancia {
 
 	private String nombre;
-	private Collection<Persona> personas;
+	private List<Persona> personas;
 	private List<Banco> bancos;
 	private Map<Integer, Atraco> atracos;
 
 	public Vigilancia(String nombre) {
 		this.nombre = nombre;
 		this.bancos = new ArrayList<>();
+		this.personas = new ArrayList<>();
 	}
 
-	/*
-	 * Registra tanto como Vigiladores como atracadores no permite registrar 2
-	 * personas con el mismo DNI. Si esto sucede lanza una exception
-	 * PersonaDuplicadaException
-	 * 
-	 */
-
-	public void registrarPersona(Persona persona) {
-
+	public void registrarPersona(Persona persona) throws PersonaDuplicadaException {
+		for (Persona p : personas) {
+			if (p.getDni().equals(persona.getDni())) {
+				throw new PersonaDuplicadaException("Ya existe una persona registrada con el mismo DNI");
+			}
+		}
+		personas.add(persona);
 	}
 
 	public void agregarBanco(Banco banco) {
@@ -40,32 +39,61 @@ public class Vigilancia {
 	 * 
 	 */
 
-	public void registrarAtraco(Integer dniAtracador, Integer idBanco) {
-		Atracador atracador;
-		Banco banco;
-		Atraco atraco = new Atraco (atracador,banco);		
-	
-	
-	//Se debe agregar un atraco al Mapa
-	this.atracos;	
-		
-		
+	public void registrarAtraco(Integer dniAtracador, Integer idBanco)
+			throws NoSeEncuentraAtracadorException, BancoNoEncontradoException {
+		Atracador atracador = null;
+		Banco banco = null;
+		for (Persona persona : personas) {
+			if (persona instanceof Atracador && persona.getDni().equals(dniAtracador)) {
+				atracador = (Atracador) persona;
+			}
+		}
+		if (atracador == null) {
+			throw new NoSeEncuentraAtracadorException("No se encontró el atracador con el DNI especificado");
+		}
+		for (Banco b : bancos) {
+			if (b.getIdBanco().equals(idBanco)) {
+				banco = b;
+			}
+		}
+		if (banco == null) {
+			throw new BancoNoEncontradoException("No se encontró el banco con el ID especificado");
+		}
+
+		Atraco atraco = new Atraco(atracador, banco);
+		atracos.put(dniAtracador, atraco);
+
 	}
 
-	// Si la clave no existe lanza ClaveInexistenteException
-	public Atraco buscarAtracoPorClave(Integer claveAtraco) {
-		return null;
+	public Atraco buscarAtracoPorClave(Integer claveAtraco) throws ClaveInexistenteException {
+		if (!atracos.containsKey(claveAtraco))
+			throw new ClaveInexistenteException("La clave especificada no existe");
+
+		return atracos.get(claveAtraco);
 	}
 
-	public Vigilante obtenerElVigiladorDeUnAtraco(Integer claveAtraco) {
-		Vigilante vigilante;
+	public Vigilante obtenerElVigiladorDeUnAtraco(Integer claveAtraco) throws ClaveInexistenteException {
+		if (!atracos.containsKey(claveAtraco)) {
+			throw new ClaveInexistenteException("La clave especificada no existe");
+		}
+
+		Atraco atraco = atracos.get(claveAtraco);
+		Vigilante vigilante = atraco.getVigilante();
+
 		return vigilante;
-
 	}
 
 	public Set<Atracador> obtenerAtracadoresOrdenados(OrdenPorApodos ordenPorApodo) {
 		Set<Atracador> atracadoresOrdenadados;
 		return atracadoresOrdenadados;
+	}
+
+	public Integer getCantidadBancos() {
+		return this.bancos.size();
+	}
+
+	public Integer getCantidadPersonas() {
+		return this.personas.size();
 	}
 
 }
