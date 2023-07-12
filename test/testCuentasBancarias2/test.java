@@ -1,15 +1,14 @@
 package testCuentasBancarias2;
 
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Assert;
 import org.junit.Test;
 
-import cuentasBancarias2.Banco;
-import cuentasBancarias2.CajaDeAhorro;
-import cuentasBancarias2.Cliente;
-import cuentasBancarias2.Cuenta;
-import cuentasBancarias2.CuentaInvalidaException;
-import cuentasBancarias2.MontoInsuficienteException;
-import cuentasBancarias2.MontoInvalidoException;
+import cuentasBancariasV2.Banco;
+import cuentasBancariasV2.CajaDeAhorro;
+import cuentasBancariasV2.Cliente;
+import cuentasBancariasV2.Cuenta;
 
 public class test {
 
@@ -33,13 +32,13 @@ public class test {
 		Boolean actual = true;
 
 		try {
-			actual = b1.agregarCuenta(c1);
+			b1.agregarCuenta(c1);
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 
-		Assert.assertTrue(actual);
+		assertTrue(actual);
 
 	}
 

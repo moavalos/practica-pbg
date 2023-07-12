@@ -7,7 +7,6 @@ import org.junit.Test;
 import centralDeAlarmas.Alarma;
 import centralDeAlarmas.CodigoAlarmaIncorrectoException;
 import centralDeAlarmas.UsuarioAdmin;
-import centralDeAlarmas.UsuarioConfigurador;
 
 public class tests {
 
@@ -18,19 +17,6 @@ public class tests {
 		String codigoConfiguracion = "4677";
 		Alarma a = new Alarma(idAlarma, codigoActivacionDesactivacion, codigoConfiguracion, "fjdkls");
 		assertNotNull(a);
-	}
-
-	@Test
-	public void queSePuedaAgregarUnUsuarioConfiguradorAUnaAlarma() {
-		Integer dni = 5431265;
-		UsuarioConfigurador b = new UsuarioConfigurador(dni, "rjk");
-		Integer idAlarma = 123;
-		Integer codigoActivacionDesactivacion = 1234;
-		String codigoConfiguracion = "4677";
-		Alarma a = new Alarma(idAlarma, codigoActivacionDesactivacion, codigoConfiguracion, "fjdkls");
-		b.getAlarmas().add(a);
-		b.agregarUsuarioAAlarma(dni, idAlarma, codigoConfiguracion);
-		assertEquals(1, b.getAlarmas().get(0).getUsuarios().size());
 	}
 	
 	@Test

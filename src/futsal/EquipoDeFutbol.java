@@ -1,12 +1,14 @@
 package futsal;
 
+import java.util.ArrayList;
 
 public class EquipoDeFutbol {
 	private String nombre;
-	private Jugador jugadores[];
+	private ArrayList<Jugador> jugadores;
 
 	public EquipoDeFutbol(String nombre) {
 		this.nombre = nombre;
+		this.jugadores = new ArrayList<Jugador>();
 	}
 
 	/*
@@ -14,10 +16,12 @@ public class EquipoDeFutbol {
 	 * sea el n�mero o nombre del jugador) Se retorna el resultado de la operaci�n
 	 */
 	public boolean agregarJugador(Jugador nuevo) {
-		Jugador jugador;
-		/*if(jugadores.length < 5 && nuevo.getNumero() != jugador.getNumero() && nuevo.getNombre() != jugador.getNombre()) {
-			
-		}*/
+		if(jugadores.size() < 5 
+				&& jugadores.get(0).getNumero() == nuevo.getNumero() 
+				&& jugadores.get(0).getNombre().equals(nuevo.getNombre())) {
+			jugadores.add(nuevo);
+			return true;
+		}
 		return false;
 	}
 
@@ -26,6 +30,11 @@ public class EquipoDeFutbol {
 	 * 
 	 */
 	public Jugador buscar(int numero) {
+		for (Jugador jugador : jugadores) {
+			if (jugador.getNumero() == numero) {
+				return jugador;
+			}
+		}
 		return null;
 	}
 
@@ -34,6 +43,10 @@ public class EquipoDeFutbol {
 	 * 
 	 */
 	public Jugador buscar(String nombre) {
+		for (Jugador jugador : jugadores) {
+			if(jugador.getNombre().equals(nombre))
+				return jugador;
+		}
 		return null;
 	}
 
@@ -42,7 +55,10 @@ public class EquipoDeFutbol {
 	 * 
 	 */
 	public double calcularLaEdadPromedioDelEquipo() {
-		return 0.0;
+		Integer edadJugadores =+ jugadores.get(0).getEdad();
+		Integer cantidadJugadores = jugadores.size();
+		Integer promedio = edadJugadores / cantidadJugadores;
+		return promedio;
 	}
 
 	/*
