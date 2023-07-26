@@ -1,5 +1,9 @@
 package transportes;
 
-public class TicketCarga {
+public class TicketCarga extends Ticket{
+
+	public TicketCarga(Integer id) {
+		super(id);
+	}
 
 }

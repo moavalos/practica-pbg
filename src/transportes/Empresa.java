@@ -1,9 +1,9 @@
 package transportes;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class Empresa {
 
@@ -25,6 +25,14 @@ public class Empresa {
 
 	public Map<Integer, Viaje> getViajes() {
 		return viajes;
+	}
+
+	public Set<Ticket> getTickets() {
+		return tickets;
+	}
+
+	public void setTickets(Set<Ticket> tickets) {
+		this.tickets = tickets;
 	}
 
 	public void setViajes(Map<Integer, Viaje> viajes) {
@@ -58,26 +66,6 @@ public class Empresa {
 	 */
 
 	 public void registrarTicketPasajero(Integer numeroViaje, Pasajero pasajero) throws TipoTicketInvalidoException, CantidadPasajeroSobrepasadaException {
-	        if (viajes.containsKey(numeroViaje)) {
-	            Viaje viaje = viajes.get(numeroViaje);
-	            if (viaje instanceof TransportePasajero) {
-	                TransportePasajeros transportePasajeros = (TransportePasajeros) viaje;
-	                if (transportePasajeros.admitePasajero(pasajero)) {
-	                    // Crear un nuevo TicketPasajero y agregarlo al conjunto de tickets.
-	                    TicketPasajero ticketPasajero = new TicketPasajero(pasajero, transportePasajeros);
-	                    if (tickets == null) {
-	                        tickets = new HashSet<>();
-	                    }
-	                    tickets.add(ticketPasajero);
-	                } else {
-	                    throw new CantidadPasajeroSobrepasadaException("Se ha superado la cantidad máxima de pasajeros permitidos en el medio de transporte.");
-	                }
-	            } else {
-	                throw new TipoTicketInvalidoException("El viaje no admite tickets de pasajero.");
-	            }
-	        } else {
-	            throw new IllegalArgumentException("El número de viaje especificado no existe.");
-	        }
 	    }
 
 	/*

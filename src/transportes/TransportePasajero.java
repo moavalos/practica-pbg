@@ -1,6 +1,6 @@
 package transportes;
 
-public class TransportePasajero extends MedioTransporte {
+public class TransportePasajero extends MedioTransporte implements ITransportable{
 
 	private Integer cantidadPasajerosMaximos;
 
@@ -15,6 +15,11 @@ public class TransportePasajero extends MedioTransporte {
 
 	public void setCantidadPasajerosMaximos(Integer cantidadPasajerosMaximos) {
 		this.cantidadPasajerosMaximos = cantidadPasajerosMaximos;
+	}
+
+	@Override
+	public Integer obtenerCantidadMaximaPasajero() {
+		return null;
 	}
 
 }

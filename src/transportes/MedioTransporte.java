@@ -1,6 +1,6 @@
 package transportes;
 
-public class MedioTransporte {
+public class MedioTransporte{
 
 	private String patente;
 

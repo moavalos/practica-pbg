@@ -1,12 +1,13 @@
 package transportes;
 
-public class TransporteMixto {
-
-	/*
-	 * No se pueden agregar mas Atributos
-	 */
+public class TransporteMixto extends MedioTransporte{
+	
 	private Integer cantidadPasajerosMaximos;
 	private Double cargaMaxima;
+
+	public TransporteMixto(String patente) {
+		super(patente);
+	}
 
 	public Integer getCantidadPasajerosMaximos() {
 		return cantidadPasajerosMaximos;

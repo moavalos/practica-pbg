@@ -1,5 +1,6 @@
 package testTransportes;
 
+import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDateTime;
@@ -7,11 +8,14 @@ import java.time.LocalDateTime;
 import org.junit.Test;
 
 import transportes.CantidadPasajeroSobrepasadaException;
+import transportes.CapacidadExcedidaException;
+import transportes.Carga;
 import transportes.Empresa;
 import transportes.TransportePasajero;
 import transportes.Viaje;
 import transportes.MedioTransporte;
 import transportes.Pasajero;
+import transportes.TicketPasajero;
 import transportes.TipoTicketInvalidoException;
 import transportes.TransporteCarga;
 
@@ -43,7 +47,6 @@ public class TestCompaniaTransporte {
 	@Test
 	public void queSePuedaRegistrarUnTicketDePasajeroAUnViaje() throws TipoTicketInvalidoException, CantidadPasajeroSobrepasadaException {
 
-		// No modificar este test.
 		Empresa empresa = new Empresa("UnlamTravel");
 
 		LocalDateTime salida = LocalDateTime.of(2023, 07, 20, 19, 00);
@@ -65,13 +68,13 @@ public class TestCompaniaTransporte {
 		String apellido = "perez";
 		Pasajero pasajero = new Pasajero(dni, apellido);
 		empresa.registrarTicketPasajero(numeroViaje, pasajero);
-
-		// Completar Test
+		
+        assertTrue(empresa.getTickets().stream().anyMatch(ticket -> ticket instanceof TicketPasajero && ((TicketPasajero) ticket).getPasajero().equals(pasajero)));
 
 	}
 
 	@Test
-	public void queAlRegistrarUnTicketDePasajeroAUnViajeConMedioDeTransporteDeCargaLanceUnaException() {
+	public void queAlRegistrarUnTicketDePasajeroAUnViajeConMedioDeTransporteDeCargaLanceUnaException() throws TipoTicketInvalidoException, CantidadPasajeroSobrepasadaException {
 
 		Empresa empresa = new Empresa("UnlamTravel");
 
@@ -95,15 +98,14 @@ public class TestCompaniaTransporte {
 		String apellido = "perez";
 		Pasajero pasajero = new Pasajero(dni, apellido);
 		empresa.registrarTicketPasajero(numeroViaje, pasajero);
-
-		// Completar test
+		
+        assertThrows(TipoTicketInvalidoException.class, () -> empresa.registrarTicketPasajero(numeroViaje, pasajero));
 
 	}
 
 	@Test
-	public void queSePuedaRegistrarUnTicketDeCargaAUnViaje() {
+	public void queSePuedaRegistrarUnTicketDeCargaAUnViaje() throws TipoTicketInvalidoException, CapacidadExcedidaException {
 
-		// No modificar este test.
 		Empresa empresa = new Empresa("UnlamTravel");
 
 		LocalDateTime salida = LocalDateTime.of(2023, 07, 20, 19, 00);
@@ -119,9 +121,8 @@ public class TestCompaniaTransporte {
 		Viaje viaje = new Viaje(salida, llegada, origen, destino, medioTransporte);
 
 		Integer numeroViaje = 1;
-		empresa.registrarTicketcarga(numeroViaje, new Carga(1, 10.0));
-		// Completar Test
-
+		empresa.registrarTicketCarga(numeroViaje, new Carga(1, 10.0));
+	
 	}
 
 	@Test

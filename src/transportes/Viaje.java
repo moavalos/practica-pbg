@@ -2,7 +2,7 @@ package transportes;
 
 import java.time.LocalDateTime;
 
-public class Viaje implements ITransportable{
+public class Viaje {
 
 	private LocalDateTime salida;
 	private LocalDateTime llegada;
@@ -56,11 +56,5 @@ public class Viaje implements ITransportable{
 
 	public void setMedioTransporte(MedioTransporte medioTransporte) {
 		this.medioTransporte = medioTransporte;
-	}
-
-	@Override
-	public Integer obtenerCantidadMaximaPasajero() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }
