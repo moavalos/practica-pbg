@@ -4,18 +4,11 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import billeteras.Billetera;
-import billeteras.CBUInvalidoException;
-import billeteras.CVUInvalidoException;
-import billeteras.Comercio;
-import billeteras.Consumidor;
-import billeteras.CuentaBancaria;
-import billeteras.CuitInvalidoException;
-import billeteras.NumeroDeTarjetaInvalidoException;
-import billeteras.Pagadora;
-import billeteras.TarjetaDeCredito;
-import billeteras.TarjetaDeDebito;
-import billeteras.Transferible;
+import billetera.CBUInvalidoException;
+import billetera.NumeroDeTarjetaInvalidoException;
+import billetera.Pagadora;
+import billetera.TarjetaDeCredito;
+import billetera.TarjetaDeDebito;
 
 public class testingg {
 
@@ -26,17 +19,17 @@ public class testingg {
 		final String TITULAR_ESPERADO = "CAMILA CIENFUEGOS";
 		final Integer CODIGO_DE_SEGURIDAD_ESPERADO = 123;
 		final String FECHA_DE_VENCIMIENTO_ESPERADO = "25/05/2022";
-		final double SALDO_ESPERADO = 10000.0;
+		final Double SALDO_ESPERADO = 10000.0;
 		
 		// Ejecuci�n
-		Pagadora tarjetaDeDebito = (Pagadora) new TarjetaDeDebito(NUMERO_ESPERADO, TITULAR_ESPERADO, FECHA_DE_VENCIMIENTO_ESPERADO, CODIGO_DE_SEGURIDAD_ESPERADO);
+		Pagadora tarjetaDeDebito = (Pagadora)new TarjetaDeDebito(NUMERO_ESPERADO, TITULAR_ESPERADO, FECHA_DE_VENCIMIENTO_ESPERADO, CODIGO_DE_SEGURIDAD_ESPERADO);
 		tarjetaDeDebito.setSaldo(10000.0);
 		
 		// Verificaci�n
 		assertEquals(NUMERO_ESPERADO, tarjetaDeDebito.getNumero());
 		assertEquals(TITULAR_ESPERADO, tarjetaDeDebito.getTitular());
-		assertEquals(CODIGO_DE_SEGURIDAD_ESPERADO, tarjetaDeDebito.getCodigoDeSeguridad());
-		assertEquals(FECHA_DE_VENCIMIENTO_ESPERADO, tarjetaDeDebito.getFechaDeVencimiento());
+		assertEquals(CODIGO_DE_SEGURIDAD_ESPERADO, tarjetaDeDebito.getCodigoSeguridad());
+		assertEquals(FECHA_DE_VENCIMIENTO_ESPERADO, tarjetaDeDebito.getFechaVencimiento());
 		assertEquals(SALDO_ESPERADO, tarjetaDeDebito.getSaldo());
 	}
 	
@@ -47,19 +40,19 @@ public class testingg {
 		final String TITULAR_ESPERADO = "SOFIA BARRIENTOS";
 		final Integer CODIGO_DE_SEGURIDAD_ESPERADO = 567;
 		final String FECHA_DE_VENCIMIENTO_ESPERADO = "25/05/2025";
-		final double LIMITE_COMPRA_EN_PESOS = 100000.0;
-		final double LIMITE_COMPRA_EN_DOLARES = 1000.0;
+		final Double LIMITE_COMPRA_EN_PESOS = 100000.0;
+		final Double LIMITE_COMPRA_EN_DOLARES = 1000.0;
 		
 		// Ejecuci�n
-		Pagadora tarjetaDeCredito = new TarjetaDeCredito(NUMERO_ESPERADO, TITULAR_ESPERADO, FECHA_DE_VENCIMIENTO_ESPERADO, CODIGO_DE_SEGURIDAD_ESPERADO, LIMITE_COMPRA_EN_PESOS, LIMITE_COMPRA_EN_DOLARES);
+		Pagadora tarjetaDeCredito = (Pagadora) new TarjetaDeCredito(NUMERO_ESPERADO, TITULAR_ESPERADO, FECHA_DE_VENCIMIENTO_ESPERADO, CODIGO_DE_SEGURIDAD_ESPERADO, LIMITE_COMPRA_EN_PESOS, LIMITE_COMPRA_EN_DOLARES);
 
 		// Verificaci�n
 		assertEquals(NUMERO_ESPERADO, tarjetaDeCredito.getNumero());
 		assertEquals(TITULAR_ESPERADO, tarjetaDeCredito.getTitular());
-		assertEquals(CODIGO_DE_SEGURIDAD_ESPERADO, tarjetaDeCredito.getCodigoDeSeguridad());
-		assertEquals(FECHA_DE_VENCIMIENTO_ESPERADO, tarjetaDeCredito.getFechaDeVencimiento());
-		assertEquals(LIMITE_COMPRA_EN_PESOS, tarjetaDeCredito.getLimiteDeCompraEnPesos());
-		assertEquals(LIMITE_COMPRA_EN_DOLARES, tarjetaDeCredito.getLimiteDeCompraEnDolares());
+		assertEquals(CODIGO_DE_SEGURIDAD_ESPERADO, tarjetaDeCredito.getCodigoSeguridad());
+		assertEquals(FECHA_DE_VENCIMIENTO_ESPERADO, tarjetaDeCredito.getFechaVencimiento());
+		assertEquals(LIMITE_COMPRA_EN_PESOS, tarjetaDeCredito.getLimiteCompraPesos());
+		assertEquals(LIMITE_COMPRA_EN_DOLARES, tarjetaDeCredito.getLimiteCompraDolares());
 	}
 	
 	@Test

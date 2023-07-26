@@ -84,7 +84,7 @@ public class Vigilancia {
 	}
 
 	public Set<Atracador> obtenerAtracadoresOrdenados(OrdenPorApodos ordenPorApodo) {
-		Set<Atracador> atracadoresOrdenadados;
+		Set<Atracador> atracadoresOrdenadados = null;
 		return atracadoresOrdenadados;
 	}
 
